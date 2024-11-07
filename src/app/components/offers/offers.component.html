@@ -1,0 +1,6 @@
+<div *ngFor="let offer of offers$ | async">
+  <h3>{{ offer.name }}</h3>
+  <p>Contract Start Date: {{ offer.contractStartDate | date }}</p>
+  <p *ngIf="offer.line">Line: {{ offer.line }}</p>
+</div>
+

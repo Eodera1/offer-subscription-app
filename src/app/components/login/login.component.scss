@@ -1,0 +1,8 @@
+@import 'src/styles/variables';
+
+.login {
+  color: $danger-color;
+  font-size: 0.875rem;
+  margin-bottom: $spacer;
+  text-align: center;
+}
