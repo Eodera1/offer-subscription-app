@@ -26,3 +26,6 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
 # offer-subscription-app
+
+
+![image_Alt](https://github.com/Eodera1/offer-subscription-app/blob/93fcdc4bda102f6dd646793402c37851b28859a7/Customer-dashboard.JPG)
