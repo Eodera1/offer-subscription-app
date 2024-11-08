@@ -3,9 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
-import * as AuthActions from '../store/auth.actions';
+import * as AuthActions from '../store/actions/auth.actions';
 import { HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -25,15 +26,21 @@ export class AuthService {
   }
 
   private handleError(error: HttpErrorResponse): Observable<never> {
-    let errorMessage = 'An unknown error occurred';
-    if (error.error instanceof ErrorEvent) {
-      // Client-side error
-      errorMessage = `Error: ${error.error.message}`;
-    } else {
-      // Server-side error
-      errorMessage = `Server Error: ${error.status}\nMessage: ${error.message}`;
+        let errorMessage = 'An unknown error occurred';
+        if (error.error instanceof ErrorEvent) {
+          // Client-side error
+          errorMessage = `Error: ${error.error.message}`;
+        } else {
+          // Server-side error
+          errorMessage = `Server Error: ${error.status}\nMessage: ${error.message}`;
+        }
+        this.store.dispatch(AuthActions.loginFailure({ error: errorMessage }));
+        return throwError(errorMessage);
     }
-    this.store.dispatch(AuthActions.loginFailure({ error: errorMessage }));
-    return throwError(errorMessage);
+
+    logout() {
+      
+      return of(null); 
+    }
+    
   }
-}

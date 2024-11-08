@@ -16,8 +16,8 @@ export class AuthEffects {
     this.actions$.pipe(
       ofType(AuthActions.login),
       mergeMap(action =>
-        this.authService.login(action.credentials).pipe(
-          map(user => AuthActions.loginSuccess({ user })),
+        this.authService.login(action.username, action.password).pipe(
+          map(user => AuthActions.loginSuccess({ token: 'fake-token' })),
           catchError(error => of(AuthActions.loginFailure({ error })))
         )
       )

@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import * as AuthActions from './auth.actions';
+import * as AuthActions from '../actions/auth.actions';
 
 export interface AuthState {
   isLoading: boolean;
@@ -7,7 +7,7 @@ export interface AuthState {
   error: any;
 }
 
-const initialState: AuthState = {
+export const initialState: AuthState = {
   isLoading: false,
   token: null,
   error: null,

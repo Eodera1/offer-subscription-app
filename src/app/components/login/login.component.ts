@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { AuthState } from '../../store/auth.reducer';
+import { AuthState } from '../store/reducers/auth.reducer';
 
 @Component({
   selector: 'app-login',

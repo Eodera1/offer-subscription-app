@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import * as AuthActions from '../store/actions/auth.actions';
+import * as AuthActions from './auth.actions';
 
 
 export const setLoading = createAction(
