@@ -1,4 +1,5 @@
 export interface Offer {
+  contractStartDate: Date;
   id: string;
   name: string;
   description: string;

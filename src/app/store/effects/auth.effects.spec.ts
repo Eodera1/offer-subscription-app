@@ -32,8 +32,8 @@ describe('AuthEffects', () => {
     it('should return a loginSuccess action with user data on successful login', () => {
       const user = { id: 1, name: 'Test User' };
       const credentials = { username: 'test', password: 'password' };
-      const action = AuthActions.login({ credentials });
-      const outcome = AuthActions.loginSuccess({ user });
+      const action = AuthActions.login({ username: 'test', password: 'password' });
+      const outcome = AuthActions.loginSuccess({ token: 'fake-token' });
 
       actions$ = hot('-a-', { a: action });
       const response = cold('-b|', { b: user });
@@ -45,7 +45,8 @@ describe('AuthEffects', () => {
 
     it('should return a loginFailure action on failed login', () => {
       const credentials = { username: 'test', password: 'password' };
-      const action = AuthActions.login({ credentials });
+      const action = AuthActions.login({ username: 'test', password: 'password' });
+
       const error = 'Invalid credentials';
       const outcome = AuthActions.loginFailure({ error });
 

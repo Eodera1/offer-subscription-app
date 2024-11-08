@@ -15,7 +15,7 @@ export class LoginComponent {
   error$: Observable<string | null>;
 
   constructor(private store: Store<{ auth: AuthState }>) {
-    this.loading$ = this.store.select(state => state.auth.loading);
+    this.loading$ = this.store.select(state => state.auth.isLoading);
     this.error$ = this.store.select(state => state.auth.error);
   }
 
