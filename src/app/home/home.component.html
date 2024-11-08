@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Header Styles */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #2c3e50;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .logout-btn {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        .refresh-btn {
+            background-color: #3498db;
+            color: white;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        /* Section Styles */
+        section {
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #34495e;
+        }
+
+        #offers-list, #subscriptions-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+
+        .offer, .subscription {
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #ecf0f1;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .offer h3, .subscription h3 {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+        }
+
+        .offer p, .subscription p {
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .offer span, .subscription span {
+            display: block;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header with Buttons -->
+        <header>
+            <h1>Customer Dashboard</h1>
+            <div class="button-group">
+                <button class="logout-btn" onclick="logout()">Logout</button>
+                <button class="refresh-btn" onclick="refreshData()">Refresh</button>
+            </div>
+        </header>
+
+        <!-- Offers Section -->
+        <section class="offers">
+            <h2>Offers</h2>
+            <div id="offers-list">
+                <!-- Dynamically loaded offers will go here -->
+            </div>
+        </section>
+
+        <!-- Subscriptions Section -->
+        <section class="subscriptions">
+            <h2>Subscriptions</h2>
+            <div id="subscriptions-list">
+                <!-- Dynamically loaded subscriptions will go here -->
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Sample data to test sorting
+        const offers = [
+            { id: 1, name: 'Offer 1', contractStartDate: '2023-05-01' },
+            { id: 2, name: 'Offer 2', contractStartDate: '2022-01-15' },
+            { id: 3, name: 'Offer 3', contractStartDate: '2024-08-30' },
+        ];
+
+        const subscriptions = [
+            { id: 1, name: 'Subscription A', line: 'Line 1' },
+            { id: 2, name: 'Subscription B', line: 'Line 3' },
+            { id: 3, name: 'Subscription C', line: 'Line 2' },
+        ];
+
+        // Sorting Functions
+        function sortOffersByDate(offers) {
+            return offers.sort((a, b) => new Date(a.contractStartDate) - new Date(b.contractStartDate));
+        }
+
+        function sortSubscriptions(subscriptions) {
+            return subscriptions.sort((a, b) => {
+                if (a.name === b.name) {
+                    return a.line.localeCompare(b.line);
+                }
+                return a.name.localeCompare(b.name);
+            });
+        }
+
+        // Render Offers and Subscriptions
+        function renderOffers() {
+            const offersList = document.getElementById('offers-list');
+            const sortedOffers = sortOffersByDate(offers);
+
+            offersList.innerHTML = sortedOffers.map(offer => `
+                <div class="offer">
+                    <h3>${offer.name}</h3>
+                    <p>Start Date: ${offer.contractStartDate}</p>
+                    <span>ID: ${offer.id}</span>
+                </div>
+            `).join('');
+        }
+
+        function renderSubscriptions() {
+            const subscriptionsList = document.getElementById('subscriptions-list');
+            const sortedSubscriptions = sortSubscriptions(subscriptions);
+
+            subscriptionsList.innerHTML = sortedSubscriptions.map(subscription => `
+                <div class="subscription">
+                    <h3>${subscription.name}</h3>
+                    <p>Line: ${subscription.line}</p>
+                    <span>ID: ${subscription.id}</span>
+                </div>
+            `).join('');
+        }
+
+        // Event Handlers
+        function logout() {
+            // Implement logout functionality
+            alert('Logged out successfully');
+        }
+
+        function refreshData() {
+            renderOffers();
+            renderSubscriptions();
+        }
+
+        // Initial render
+        renderOffers();
+        renderSubscriptions();
+    </script>
+
+</body>
+</html>
