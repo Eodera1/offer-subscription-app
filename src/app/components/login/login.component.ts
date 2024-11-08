@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { AuthState } from '../store/reducers/auth.reducer';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +14,7 @@ export class LoginComponent {
   error$: Observable<string | null>;
 
   constructor(private store: Store<{ auth: AuthState }>) {
-    this.loading$ = this.store.select(state => state.auth.isLoading);
+    this.loading$ = this.store.select(state => state.auth.loading);
     this.error$ = this.store.select(state => state.auth.error);
   }
 

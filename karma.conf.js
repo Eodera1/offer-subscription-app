@@ -11,12 +11,12 @@ module.exports = function (config) {
     ],
     client: {
       jasmine: {
-        // Configure Jasmine options here
+        
       },
-      clearContext: false // leave Jasmine Spec Runner output visible in browser
+      clearContext: false 
     },
     jasmineHtmlReporter: {
-      suppressAll: true // removes the duplicated traces
+      suppressAll: true
     },
     coverageReporter: {
       dir: require('path').join(__dirname, './coverage'),
@@ -33,6 +33,5 @@ module.exports = function (config) {
     autoWatch: true,
     browsers: ['Chrome'],
     singleRun: false,
-    restartOnFileChange: true
   });
 };

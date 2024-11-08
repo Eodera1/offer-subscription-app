@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthState } from '../../store/auth.reducer';
 
 @Component({
   selector: '[app-login]',
